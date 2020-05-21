@@ -1,0 +1,3 @@
+logging:
+  file: C:\Users\mixak\test
+  level:    com.smartequate: INFO
