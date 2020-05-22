@@ -95,6 +95,13 @@ CREATE TABLE points (
   	total_points FLOAT NOT NULL
 );
 
+CREATE TABLE user (
+  	id INT AUTO_INCREMENT PRIMARY KEY,
+  	username VARCHAR(250) NOT NULL,
+  	password VARCHAR(250) NOT NULL,
+  	role VARCHAR(250) NOT NULL
+);
+
 CREATE TABLE phone (
   	id INT AUTO_INCREMENT PRIMARY KEY,
   	name VARCHAR(250) NOT NULL,
@@ -102,9 +109,18 @@ CREATE TABLE phone (
   	foreign key (attributes_id) references attributes(id),
   	brand VARCHAR(250) NOT NULL,
   	points_id INTEGER,
-  	foreign key (points_id) references points(id),
-  	votes INTEGER NOT NULL
+  	foreign key (points_id) references points(id)
 );
+
+CREATE TABLE vote (
+  	id INT AUTO_INCREMENT PRIMARY KEY,
+  	user_id INTEGER,
+  	foreign key (user_id) references user(id),
+  	phone_id INTEGER,
+  	foreign key (phone_id) references phone(id)
+);
+
+
 
 
 

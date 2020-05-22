@@ -5,3 +5,5 @@ RUNSCRIPT FROM 'src/main/resources/INSERT_SENSORS.sql';
 RUNSCRIPT FROM 'src/main/resources/INSERT_SIZES.sql';
 RUNSCRIPT FROM 'src/main/resources/INSERT_ATTRIBUTES.sql';
 RUNSCRIPT FROM 'src/main/resources/INSERT_PHONES.sql';
+RUNSCRIPT FROM 'src/main/resources/INSERT_USERS.sql';
+RUNSCRIPT FROM 'src/main/resources/INSERT_VOTES.sql';

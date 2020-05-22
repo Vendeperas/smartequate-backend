@@ -1,0 +1,10 @@
+insert into user (username, password, role) values ('savrahamov0', 'n7WTgixVQng', 'user');
+insert into user (username, password, role) values ('sgrishukov1', 'K9kr8HTsWN5', 'user');
+insert into user (username, password, role) values ('baslie2', 'XZN2ks3h', 'user');
+insert into user (username, password, role) values ('ppanas3', 'SBYFAo8Iw', 'user');
+insert into user (username, password, role) values ('adoggart4', 'P6PO8MXH', 'user');
+insert into user (username, password, role) values ('cvarns5', 'Ml93fSa6H7', 'user');
+insert into user (username, password, role) values ('tbavidge6', 'P3Os0nzbW4', 'user');
+insert into user (username, password, role) values ('abourley7', 'YdNYgZBRTyXp', 'user');
+insert into user (username, password, role) values ('amccoughan8', 'yQxA8UfU', 'user');
+insert into user (username, password, role) values ('admin1', 'admin1', 'admin');

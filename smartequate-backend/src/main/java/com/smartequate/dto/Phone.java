@@ -33,9 +33,6 @@ public class Phone {
 	@JoinColumn(name = "points_id")
 	private Points points;
 	
-	@Column
-	private int votes;
-	
 	public String getName() {
 		return name;
 	}
@@ -60,13 +57,5 @@ public class Phone {
 	public void setPoints(Points points) {
 		this.points = points;
 	}
-	public int getVotes() {
-		return votes;
-	}
-	public void setVotes(int votes) {
-		this.votes = votes;
-	}
-	
-	
 	
 }
