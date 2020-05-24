@@ -1,33 +1,8 @@
 package com.smartequate.util;
 
-import javax.persistence.Column;
 
 public class Constants {
 	
-	/*
-	 * 	public enum Cpu{
-		snapdragon_865,
-		snapdragon_855,
-		snapdragon_845,
-		snapdragon_835,
-		a13,
-		a12,
-		a11,
-		a10,
-		exynos9820,
-		exynos9810
-	}
-	
-	public enum Display_type {
-		led,
-		oled,
-		amoled
-	}
-	
-	public enum Port{
-		micro_usb,
-		type_c
-	}*/
 	public static final int POINTS_CPU_SNAPDRAGON_865 = 800;
 	public static final int POINTS_CPU_SNAPDRAGON_855 = 700;
 	public static final int POINTS_CPU_SNAPDRAGON_845 = 600;
@@ -76,33 +51,5 @@ public class Constants {
 	
 	public static final int POINTS_MULTITOUCH = 150;
 	
-	/*
-	 * 
-	 * private boolean accelerometer;
-	
-	@Column
-	private boolean gyroscope;
-	
-	@Column
-	private boolean magnetometer;
-	
-	@Column
-	private boolean gps;
-	
-	@Column
-	private boolean proximity;
-	
-	@Column
-	private boolean light;
-	
-	@Column
-	private boolean fingerprint;
-	
-	@Column
-	private boolean barometer;
-	
-	@Column
-	private boolean thermometer;
-	*/
 	
 }

@@ -1,5 +1,7 @@
 package com.smartequate.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +19,9 @@ public class ResolutionService {
 		Resolution resolution = resolutionRepo.findById(id);
 		
 		return resolution;
+	}
+	
+	public List<Resolution> getAll() {
+		return resolutionRepo.findAll();
 	}
 }

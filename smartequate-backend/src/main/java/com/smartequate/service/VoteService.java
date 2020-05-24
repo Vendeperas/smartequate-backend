@@ -11,4 +11,7 @@ public class VoteService {
 	@Autowired
 	VoteRepository voteRepo;
 
+	public int getPhoneVotes(int id) {
+		return voteRepo.findVoted(id);
+	}
 }

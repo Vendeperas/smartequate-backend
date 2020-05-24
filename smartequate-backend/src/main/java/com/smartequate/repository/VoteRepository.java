@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.smartequate.dto.Phone;
@@ -17,4 +18,8 @@ public interface VoteRepository extends CrudRepository<Vote, Integer>{
 	@Query(nativeQuery= true, value="SELECT * FROM phone WHERE id IN "
 			+ "(SELECT TOP 5 phone_id FROM vote GROUP BY phone_id )")
 	public List<Phone> findMostVoted();
+	
+	@Query(nativeQuery= true, value="SELECT COUNT(*) FROM vote WHERE phone_id = :id ")
+	public int findVoted(@Param("id") int id);
+	
 }

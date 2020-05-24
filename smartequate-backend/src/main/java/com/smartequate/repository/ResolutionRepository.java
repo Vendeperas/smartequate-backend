@@ -12,6 +12,8 @@ import com.smartequate.dto.Resolution;
 public interface ResolutionRepository extends CrudRepository<Resolution, Integer>{
 
 	 public Resolution findById(int id);
+	 
+	 public List<Resolution> findAll();
 	
 	 public Resolution findByWidthAndHeight(int width, int height);
 }

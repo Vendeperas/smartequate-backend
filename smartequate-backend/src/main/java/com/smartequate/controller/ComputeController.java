@@ -92,13 +92,7 @@ public class ComputeController {
 		
 		Points points = pointsService.computePoints(att);
 		
-		List<Phone> phones = phoneService.getAllPhones();
-		
-		for (Phone phone: phones) {
-			Points phonePoints = pointsService.computePoints(phone.getAttributes());
-			phone.setPoints(phonePoints);
-			phoneService.savePhone(phone);
-		}
+		phoneService.computeAllPoints();
 		
 		List<Phone> list = phoneService.getMostVoted();
 		
