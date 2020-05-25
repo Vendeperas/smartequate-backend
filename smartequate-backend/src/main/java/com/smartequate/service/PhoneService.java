@@ -23,6 +23,9 @@ public class PhoneService {
 	@Autowired
 	private PointsService pointsService;
 	
+	@Autowired
+	private AveragesService avgService;
+	
 	
 	public Phone getPhoneById(int id) {
 		return phoneRepo.findById(id);
@@ -30,6 +33,12 @@ public class PhoneService {
 	
 	public void savePhone(Phone phone) {
 		phoneRepo.save(phone);
+	}
+	
+	public void saveNewPhone(Phone phone) {
+		phoneRepo.save(phone);
+		avgService.recalculateAverages();
+		computeAllPoints();
 	}
 	
 	public Page<Phone> getAllPhones(String name, String brand, String cpu, String battery, Pageable page) {
@@ -78,12 +87,15 @@ public class PhoneService {
 	}
 	
 	public void computeAllPoints( ) {
+
 		List<Phone> phones = getAll();
-		
+
 		for (Phone phone: phones) {
 			Points phonePoints = pointsService.computePoints(phone.getAttributes());
 			phone.setPoints(phonePoints);
 			savePhone(phone);
 		}
+		
+
 	}
 }

@@ -19,7 +19,7 @@ public interface VoteRepository extends CrudRepository<Vote, Integer>{
 			+ "(SELECT TOP 5 phone_id FROM vote GROUP BY phone_id )")
 	public List<Phone> findMostVoted();
 	
-	@Query(nativeQuery= true, value="SELECT COUNT(*) FROM vote WHERE phone_id = :id ")
-	public int findVoted(@Param("id") int id);
+	
+	Long countByPhoneId(Integer id);
 	
 }

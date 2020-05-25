@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,10 +28,12 @@ public class VoteController {
 	public static final Logger logger = LoggerFactory.getLogger(PhoneController.class);
 	
 	@GetMapping("/phones/{id}")
-	public ResponseEntity<Integer> getVotes(@PathParam("id") Integer id) {
+	public ResponseEntity<Long> getVotes(@PathVariable("id") Integer id) {
 		
-		int votes = voteService.getPhoneVotes(id);
+		Long votes = voteService.getPhoneVotes(id);
 		
-		return new ResponseEntity<Integer>(votes, HttpStatus.OK);
+		System.out.println(id);
+		
+		return new ResponseEntity<Long>(votes, HttpStatus.OK);
 	}
 }

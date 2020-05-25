@@ -64,6 +64,16 @@ public class PhoneController {
 		return new ResponseEntity<Page<Phone>>(phonePage, HttpStatus.OK);
 	}
 	
+	@PostMapping("/new") 
+	public ResponseEntity<Phone> addNewPhone(@RequestBody Phone body){
+		
+		Phone phone = body;
+		
+		phoneService.savePhone(phone);
+		
+		return new ResponseEntity<Phone>(phone, HttpStatus.OK);
+	}
+	
 	@GetMapping("/mostValued")
 	public ResponseEntity<List<Phone>> mostValued() {
 		
@@ -86,14 +96,6 @@ public class PhoneController {
 		Phone phone = phoneService.getPhoneById(id);
 		
 		return new ResponseEntity<Phone>(phone, HttpStatus.OK);
-	}
-	
-	@GetMapping("/compute")
-	public ResponseEntity<String> computePoints() {
-		
-		phoneService.computeAllPoints();
-		
-		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@GetMapping("/all")

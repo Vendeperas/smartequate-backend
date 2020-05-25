@@ -3,6 +3,9 @@ package com.smartequate.util;
 
 public class Constants {
 	
+	public static final long JWT_TOKEN_VALIDITY = 20;
+	
+	
 	public static final int POINTS_CPU_SNAPDRAGON_865 = 800;
 	public static final int POINTS_CPU_SNAPDRAGON_855 = 700;
 	public static final int POINTS_CPU_SNAPDRAGON_845 = 600;

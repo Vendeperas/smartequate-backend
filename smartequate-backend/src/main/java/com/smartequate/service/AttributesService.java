@@ -24,7 +24,6 @@ public class AttributesService {
 	
 	public void saveAttributes(Attributes att) {
 		attRepo.save(att);
-		avgService.recalculateAverages();
 	}
 	
 	public List<Attributes> getAllAttributes() {

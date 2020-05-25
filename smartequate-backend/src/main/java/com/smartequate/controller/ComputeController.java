@@ -19,6 +19,7 @@ import com.smartequate.dto.Attributes.Cpu;
 import com.smartequate.dto.Attributes.Display_type;
 import com.smartequate.dto.Attributes.Port;
 import com.smartequate.dto.Averages;
+import com.smartequate.dto.GenericResponse;
 import com.smartequate.dto.Phone;
 import com.smartequate.dto.Points;
 import com.smartequate.dto.Resolution;
@@ -92,11 +93,24 @@ public class ComputeController {
 		
 		Points points = pointsService.computePoints(att);
 		
-		phoneService.computeAllPoints();
-		
 		List<Phone> list = phoneService.getMostVoted();
 		
 		return new ResponseEntity<List<Phone>>(list, HttpStatus.OK);
+	}
+	
+	@GetMapping("/compute")
+	public ResponseEntity<GenericResponse> computePoints() {
+		
+		avgService.recalculateAverages();
+		phoneService.computeAllPoints();
+		
+		GenericResponse response = new GenericResponse();
+		
+		response.setStatus("Finished");
+		response.setMessage("OK");
+		response.setDescription("Process finished succesfully");
+		
+		return new ResponseEntity<GenericResponse>(response , HttpStatus.OK);
 	}
 
 }
