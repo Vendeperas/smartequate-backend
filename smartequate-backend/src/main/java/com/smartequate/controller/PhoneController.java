@@ -25,15 +25,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.smartequate.dto.CustomSearchBody;
 import com.smartequate.dto.Phone;
+import com.smartequate.dto.Points;
+import com.smartequate.dto.Resolution;
 import com.smartequate.service.PhoneService;
+import com.smartequate.service.PointsService;
+import com.smartequate.service.ResolutionService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/phones")
+@RequestMapping({"/phones"})
 public class PhoneController {
 
 	@Autowired
 	PhoneService phoneService;
+	
+	@Autowired
+	ResolutionService resolutionService;
+	
+	@Autowired
+	PointsService pointsService;
 	
 	public static final Logger logger = LoggerFactory.getLogger(PhoneController.class);
 	
@@ -53,10 +63,8 @@ public class PhoneController {
 		Page<Phone> phonePage;
 
 		if (direction.equals(new String("asc"))) {
-			System.out.println("entrado a asc");
 			phonePage = phoneService.getAllPageable(name,brand,cpu,battery,body,PageRequest.of(page, size, Sort.by(sort)));
 		} else {
-			System.out.println("entrado a desc");
 			phonePage = phoneService.getAllPageable(name,brand,cpu,battery,body,PageRequest.of(page, size, Sort.by(sort).descending()));
 		}
 		
@@ -67,11 +75,18 @@ public class PhoneController {
 	@PostMapping("/new") 
 	public ResponseEntity<Phone> addNewPhone(@RequestBody Phone body){
 		
-		Phone phone = body;
+		Resolution resolution = resolutionService.getResolution(5);
+		body.getAttributes().setResolution(resolution);;
 		
-		phoneService.savePhone(phone);
+		phoneService.saveNewPhone(body);
 		
-		return new ResponseEntity<Phone>(phone, HttpStatus.OK);
+		Points points = pointsService.computePoints(body.getAttributes());
+		
+		body.setPoints(points);
+		
+		phoneService.savePhone(body);
+		
+		return new ResponseEntity<Phone>(body, HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/mostValued")

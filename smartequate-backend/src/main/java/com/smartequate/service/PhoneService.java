@@ -36,6 +36,9 @@ public class PhoneService {
 	}
 	
 	public void saveNewPhone(Phone phone) {
+		
+		
+		
 		phoneRepo.save(phone);
 		avgService.recalculateAverages();
 		computeAllPoints();

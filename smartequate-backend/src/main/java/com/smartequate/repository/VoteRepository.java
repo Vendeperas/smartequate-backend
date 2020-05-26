@@ -22,4 +22,6 @@ public interface VoteRepository extends CrudRepository<Vote, Integer>{
 	
 	Long countByPhoneId(Integer id);
 	
+	
+	public List<Vote> findByPhoneId(int phoneId);
 }

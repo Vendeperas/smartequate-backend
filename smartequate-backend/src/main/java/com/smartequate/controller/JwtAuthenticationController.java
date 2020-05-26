@@ -1,6 +1,11 @@
 package com.smartequate.controller;
 
 import java.util.Objects;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.cors.CorsUtils;
+
 import com.smartequate.service.JwtUserDetailsService;
 import com.smartequate.config.JwtTokenUtil;
 import com.smartequate.dto.JwtRequest;
@@ -31,8 +38,13 @@ public class JwtAuthenticationController {
 	@Autowired
 	private JwtUserDetailsService userDetailsService;
 	
+	public static final Logger logger = LoggerFactory.getLogger(JwtAuthenticationController.class);
+	
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+		
+		logger.info(("Petició d'autenticació de l'usuari " + authenticationRequest.getUsername()));
+		
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 		final UserDetails userDetails = userDetailsService
 				.loadUserByUsername(authenticationRequest.getUsername());

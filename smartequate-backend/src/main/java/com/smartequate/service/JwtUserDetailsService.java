@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.cors.CorsUtils;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
@@ -19,9 +20,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
 		com.smartequate.dto.User user = userService.getUserByName(username);
-		System.out.println(username);
-		System.out.println(user.getUsername());
-		System.out.println(user.getPassword());
+
 		if (user.getUsername().equals(username)) {
 			return new User(user.getUsername(), user.getPassword(),
 					new ArrayList<>());

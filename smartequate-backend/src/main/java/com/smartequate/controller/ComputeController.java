@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,7 +38,7 @@ import com.smartequate.util.Constants;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api")
+@RequestMapping("/compute")
 public class ComputeController {
 	
 	@Autowired
@@ -63,42 +65,13 @@ public class ComputeController {
 	public static final Logger logger = LoggerFactory.getLogger(ComputeController.class);
 	
 	@GetMapping("/ping")
-	public ResponseEntity<List<Phone>> ping() {
+	public ResponseEntity<String> ping() {
 	
-		Sensors sensors = sensorsService.getSensors(43);
-		Size size = sizeService.getSize(76);
-		Resolution resolution = resolutionService.getResolution(2);
-		
-		// ---------------- INSERT ATTRIBUTES ------------------------
-		Attributes att = new Attributes();
-		att.setSize(size);
-		att.setWeight(170);
-		att.setSim_tray(2);
-		att.setCpu(Cpu.snapdragon_855.toString());
-		att.setDisplay_size(Float.parseFloat("6.5"));
-		att.setCard_slot(true);
-		att.setCamera_a(40);
-		att.setCamera_b(12);
-		att.setJack(true);
-		att.setDisplay_type(Display_type.oled.toString());
-		att.setRom(64);
-		att.setRam(8);
-		att.setResolution(resolution);
-		att.setBattery(4000);
-		att.setSensors(sensors);
-		att.setPort(Port.type_c.toString());
-		att.setMultitouch(true);
-
-		attService.saveAttributes(att);
-		
-		Points points = pointsService.computePoints(att);
-		
-		List<Phone> list = phoneService.getMostVoted();
-		
-		return new ResponseEntity<List<Phone>>(list, HttpStatus.OK);
+		return new ResponseEntity<String>("pong", HttpStatus.OK);
 	}
 	
-	@GetMapping("/compute")
+	
+	@GetMapping("/points")
 	public ResponseEntity<GenericResponse> computePoints() {
 		
 		avgService.recalculateAverages();
